@@ -6,13 +6,13 @@ def trace(root):
 
     collecting all nodes and directed edges.
     """
-    nodes, edges = set(), set()
+    nodes, edges = set(), list()
 
     def build(v):
         if v not in nodes:
             nodes.add(v)
             for child in v._prev:
-                edges.add((child, v))
+                edges.append((child, v))
                 build(child)
 
     build(root)

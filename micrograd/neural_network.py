@@ -18,7 +18,7 @@ class Value:
         self.label = label
         self.grad = grad
         self._op = _op
-        self._prev = set(_children)
+        self._prev = tuple(_children)
         self._backward = lambda: None
 
     def __repr__(self):
