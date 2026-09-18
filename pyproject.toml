@@ -14,4 +14,8 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["ipykernel>=7.3.0"]
+dev = [
+    "ipykernel>=7.3.0",
+    "nbformat>=4.2.0",
+    "plotly>=7.1.0",
+]
