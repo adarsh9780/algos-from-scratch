@@ -56,9 +56,9 @@ P(1) = 7/10 = 0.7
 P(0) = 3/10 = 0.3
 
 The probability of observing a data where 7 heads and 3 tails come is:
-Likelihood (L) = P(1) * P(0)
+Likelihood (L) = P(1) * P(1) * ... 7 times * P(0) * ... 3 times
 
-0.7 * 0.3
+(0.7 ** 7) * (0.3 ** 3)
 
 as we know probabilities are numbers between 0-1. these are small numbers.
 as we keep multipliying it, the final number (result) will become smaller
@@ -91,7 +91,7 @@ take the sum: P.log().sum()
 nll = P.log().sum()  # this would give nan, why?
 
 # because the last row, which represents the combination of <S> and <E>
-# never happens. start and end char never occurs at the same time.
+# never happens. start and end char never occurs one after the other.
 # so those counts are 0, probabilities for them is undefined, thus nan
 # log of nan is nan
 # so we will only keep P except the last row
@@ -183,7 +183,6 @@ Ys = torch.tensor(ys)
 Xenc = F(Xs, num_classes=28).float()
 Yenc = F(Ys, num_classes=28).float()
 
-# let's construct first neuron
 W = torch.randn((28, 28), dtype=torch.float32, requires_grad=True)
 
 # because we will use softmax later on as loss function
@@ -203,7 +202,7 @@ for k in range(100):
     # Step 2 + Step 3 = SOFTMAX
 
     # Calculate loss
-    # torch.arange(5) = tensor([0, 1, 2, 3, 4, 5])
+    # torch.arange(5) = tensor([0, 1, 2, 3, 4])
     # [0, 5], [1, 13] = for zeroth row, we want 5 element
     # suppose we only have 6 rows or bigrams
     # probs[0, 5]
