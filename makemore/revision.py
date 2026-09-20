@@ -5,7 +5,7 @@ with open("names.txt", "r") as i:
     queue = i.readlines()
     names = [q.strip() for q in queue]
 
-vocabulary = {n for name in names for n in list(name)}
+vocabulary = sorted({n for name in names for n in list(name)})
 vocabulary = ["<S>"] + list(vocabulary) + ["<E>"]
 
 stoi = {char: i for i, char in enumerate(vocabulary)}
